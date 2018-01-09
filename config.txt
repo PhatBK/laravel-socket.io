@@ -1,1 +1,1 @@
-address = http://bkcook.ddns.net
+address = http://localhost

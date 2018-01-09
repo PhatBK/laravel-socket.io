@@ -42,6 +42,14 @@
 
 /* post post*/
 
+#input-post-title {
+	background-color: #fafafa;
+    width: 100%;
+    color: black;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
 .textarea-post-post {
     background-color: #fafafa;
     width: 100%;

@@ -1,4 +1,4 @@
-var socket = io.connect('http://1.55.49.129:1108');
+var socket = io.connect('http://localhost:1108');
 
 function clicksenduserpost(id_user_online) {
     var selDiv = $("#selectedFiles"); 
@@ -8,7 +8,11 @@ function clicksenduserpost(id_user_online) {
     $('.selFile').each(function (index, value){
         list_image_src.push($(this).attr('src'));
     });
-    var noi_dung = $('.textarea-post-post').val();
+    var noi_dung = $('.textarea-post-post').val().trim();
+    if(noi_dung=='') {
+        alert('ban chua dien noi dung bai viet');
+        return;
+    }
     var id_user = $('.user-posts-post').attr("id");
 
     var id_loaimon = $('.select-post-post-type-dish option:selected').val();
@@ -17,9 +21,15 @@ function clicksenduserpost(id_user_online) {
         alert('ban chua dien loai mon');
         return;
     } 
-    console.log({'noi_dung':noi_dung,'id_loaimon':id_loaimon,'list_image_src':list_image_src});
-    socket.emit('user posts post',{'id_user':id_user_online,'noi_dung':noi_dung,'id_loaimon':id_loaimon,'list_image_src':list_image_src});
+    var tieude = $('#input-post-title').val().trim();
+    if(tieude=='') {
+        alert('ban chua dien tieu de');
+        return;
+    }
+    console.log({'tieude':tieude,'noi_dung':noi_dung,'id_loaimon':id_loaimon,'list_image_src':list_image_src});
+    socket.emit('user posts post',{'id_user':id_user_online,'tieude':tieude,'noi_dung':noi_dung,'id_loaimon':id_loaimon,'list_image_src':list_image_src});
     $('.textarea-post-post').val('');
+    $('#input-post-title').val('');
     $('.sub-img-post-post').remove();
     $('.action-post-post').hide();
     return false;
@@ -473,7 +483,7 @@ $(document).ready(function(){
                         <div class="row user-post-title" style="margin-top: 20px">
                             <div class="container">
                                 <div class="col-sm-12">
-                                    
+                                    <p class="user-post-title-p1">`+ data.tieude+` </p>
                                 </div>
                             </div>                          
                         </div>

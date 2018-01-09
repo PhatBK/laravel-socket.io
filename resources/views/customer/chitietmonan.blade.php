@@ -95,27 +95,26 @@
 						</div>
 				</div>
 			</div>
-			{{-- share-social --}}
-			{{-- <div>
-			    @php
-			       $link_share_fb = urlencode($monan->link);
-			    @endphp
-			    <div style="text-align: center;">
-			        <a href="http://www.facebook.com/sharer.php?u={!!$link_share_fb!!}&amp;src=sdkpreparse" target="_blank">
-			            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" width="45px" alt="Facebook" />
-			        </a>
-                    <a href="https://twitter.com/share?url={!!$link_share_fb!!}" class="ssbp-btn ssbp-twitter ssbp-twitter--standard" rel="nofollow" data-ssbp-title="" data-ssbp-url="https://simplesharebuttons.com/" data-ssbp-site="Twitter">
-                        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" width="45px" alt="Twitter" />
-                    </a>
-			        <a href="https://plus.google.com/share?url={{$link_share_fb}}" target="_blank">
-			            <img src="https://simplesharebuttons.com/images/somacro/google.png" width="45px" alt="Google" />
-			        </a>
-			        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{$link_share_fb}}&title=&summary=&source=" target="_blank">
-			            <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" width="45px" alt="LinkedIn" />
-			        </a>
-			    </div>
-			</div> --}}
-			{{-- hết share --}}
+				@if($monan->video)
+					<div class="modal fade" id="yourModal{{$monan->video->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+						<div class="modal-dialog" role="document">
+							<div class="modal-content" style="width: 720px;">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">{{$monan->ten_monan}}</h4>
+									</div>
+									<div class="modal-body">
+											<video id="video" width="700" controls>
+											  <source id="svideo" src="uploads\video\{{$monan->video->ten}}" type="video/mp4">
+											</video>
+									</div>
+									<div class="modal-footer">
+
+									</div>
+							</div>
+						</div>
+					</div>
+				@endif
 			</div>
 			{{-- Món ăn liên quan --}}
 			<div id="monanlienquan" class="col-md-3">
@@ -162,14 +161,21 @@
 	            		<div class="card">
 				            <ul class="nav nav-tabs" role="tablist">
 				                <li role="presentation" class="active">
-				                	<a href="#congthuc" aria-controls="congthuc" role="tab" data-toggle="tab">Công thức</a>
+				                	<a href="#congthuc" aria-controls="congthuc" role="tab" data-toggle="tab">Công Thức</a>
 				                </li>
 				                <li role="presentation">
-				                	<a href="#hinhanh" aria-controls="hinhanh" role="tab" data-toggle="tab">Hình ảnh</a>
+				                	<a href="#hinhanh" aria-controls="hinhanh" role="tab" data-toggle="tab">Hình Ảnh</a>
 				                </li>
-				                <li role="presentation">
-				                	<a href="#video" aria-controls="video" role="tab" data-toggle="tab">Video</a>
-				                </li>
+				                @if($monan->video)
+					                <li role="presentation">
+					                	<a {{-- href="#video" --}} aria-controls="video" role="tab" {{-- data-toggle="tab" --}} data-toggle="modal" data-target="#yourModal{{$monan->video->id}}">Video</a>
+					                </li>
+				                @endif
+				                @if(!$monan->video)
+				                	<li role="presentation">
+					                	<a href="#video" aria-controls="video" role="tab" {{-- data-toggle="tab" --}} data-toggle="modal" data-target="">Chưa Có Video</a>
+					                </li>
+				                @endif
 				            </ul>
 		                    <!-- Tab panes -->
 	                    <div class="tab-content">
@@ -232,31 +238,11 @@
 								@else
 									<img src="{{$baiviet_lienquan->user->anhdaidien}}" alt="Mất kết nối..anh user">
 								@endif
-								<p><a href="baidangchitiet/{{$baiviet_lienquan->id}}" target="_blank" {{-- data-toggle="modal" data-target="#yourModal{{$md->id}}" --}}>
+								<p><a href="baidangchitiet/{{$baiviet_lienquan->id}}" target="_blank">
 								&nbsp;&nbsp;Tác Giả:<b style="color: orange;">{{$baiviet_lienquan->user->hovaten}}</b>
 								</a>
 								</p>
 							</div>
-						{{--
-						<div class="modal fade" id="yourModal{{$md->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title" id="myModalLabel">{{$md->ten_monan}}</h4>
-										</div>
-										<div class="modal-body">
-											{{$md->gioithieu}}
-										</div>
-										<div class="modal-footer">
-											<form class="" action="" method="POST">
-												<input id="text-bvlq" type="text" class="form-control" placeholder="  Your comment">
-												<button id="cmt-bvlq" type="button" class="btn btn-primary">Bình Luận</button>
-												<button id="cls-bvlq" type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
-											</form>
-										</div>
-								</div>
-							</div>
-						</div> --}}
 						@endforeach
 					@else
 						<p style="color:green; text-align: center;">Không có bài viết nào !!</p>
@@ -309,7 +295,21 @@
 </section>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> --}}
 <script src="vendor_customer/vendor/js/socket.io.js"></script>
-
+{{-- Sử lý tắt video khi tắt Modal  --}}
+@if($monan->video)
+	<script>
+		console.log('modal turn off');
+		$('#yourModal{{$monan->video->id}}').on('hidden.bs.modal', function (e) {
+			// $('#yourModal{{$monan->video->id}}')[0].pause();
+			$('#yourModal{{$monan->video->id}} svideo').attr("src", $("#yourModal{{$monan->video->id}}  svideo").attr("src"));
+			console.log('ID video :'+ {{$monan->video->id}});
+			e.preventDefault();
+		    $('.videoplayer').children('iframe').attr('src', '');
+		    $('.modal-background').fadeOut();
+		});
+	</script>
+@endif
+{{--  --}}
 <script type="text/javascript">
 	function split(data,id){
 		var nguyenlieu=data;
@@ -357,7 +357,7 @@
 	    })
     });
 
-    var socket = io.connect('http://1.55.49.129:1108');
+    var socket = io.connect('http://localhost:1108');
 
 	function sendComment(id_user,id_monan) {
 		var text = $("#input-comment").val();

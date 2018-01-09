@@ -94,9 +94,26 @@
 						</div>
 				</div>
 			</div>
-			
-			
-			
+				<?php if($monan->video): ?>
+					<div class="modal fade" id="yourModal<?php echo e($monan->video->id); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+						<div class="modal-dialog" role="document">
+							<div class="modal-content" style="width: 720px;">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title" id="myModalLabel"><?php echo e($monan->ten_monan); ?></h4>
+									</div>
+									<div class="modal-body">
+											<video id="video" width="700" controls>
+											  <source id="svideo" src="uploads\video\<?php echo e($monan->video->ten); ?>" type="video/mp4">
+											</video>
+									</div>
+									<div class="modal-footer">
+
+									</div>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
 			</div>
 			
 			<div id="monanlienquan" class="col-md-3">
@@ -143,14 +160,21 @@
 	            		<div class="card">
 				            <ul class="nav nav-tabs" role="tablist">
 				                <li role="presentation" class="active">
-				                	<a href="#congthuc" aria-controls="congthuc" role="tab" data-toggle="tab">Công thức</a>
+				                	<a href="#congthuc" aria-controls="congthuc" role="tab" data-toggle="tab">Công Thức</a>
 				                </li>
 				                <li role="presentation">
-				                	<a href="#hinhanh" aria-controls="hinhanh" role="tab" data-toggle="tab">Hình ảnh</a>
+				                	<a href="#hinhanh" aria-controls="hinhanh" role="tab" data-toggle="tab">Hình Ảnh</a>
 				                </li>
-				                <li role="presentation">
-				                	<a href="#video" aria-controls="video" role="tab" data-toggle="tab">Video</a>
-				                </li>
+				                <?php if($monan->video): ?>
+					                <li role="presentation">
+					                	<a  aria-controls="video" role="tab"  data-toggle="modal" data-target="#yourModal<?php echo e($monan->video->id); ?>">Video</a>
+					                </li>
+				                <?php endif; ?>
+				                <?php if(!$monan->video): ?>
+				                	<li role="presentation">
+					                	<a href="#video" aria-controls="video" role="tab"  data-toggle="modal" data-target="">Chưa Có Video</a>
+					                </li>
+				                <?php endif; ?>
 				            </ul>
 		                    <!-- Tab panes -->
 	                    <div class="tab-content">
@@ -213,12 +237,11 @@
 								<?php else: ?>
 									<img src="<?php echo e($baiviet_lienquan->user->anhdaidien); ?>" alt="Mất kết nối..anh user">
 								<?php endif; ?>
-								<p><a href="baidangchitiet/<?php echo e($baiviet_lienquan->id); ?>" target="_blank" >
+								<p><a href="baidangchitiet/<?php echo e($baiviet_lienquan->id); ?>" target="_blank">
 								&nbsp;&nbsp;Tác Giả:<b style="color: orange;"><?php echo e($baiviet_lienquan->user->hovaten); ?></b>
 								</a>
 								</p>
 							</div>
-						
 						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php else: ?>
 						<p style="color:green; text-align: center;">Không có bài viết nào !!</p>
@@ -272,6 +295,20 @@
 
 <script src="vendor_customer/vendor/js/socket.io.js"></script>
 
+<?php if($monan->video): ?>
+	<script>
+		console.log('modal turn off');
+		$('#yourModal<?php echo e($monan->video->id); ?>').on('hidden.bs.modal', function (e) {
+			// $('#yourModal<?php echo e($monan->video->id); ?>')[0].pause();
+			$('#yourModal<?php echo e($monan->video->id); ?> svideo').attr("src", $("#yourModal<?php echo e($monan->video->id); ?>  svideo").attr("src"));
+			console.log('ID video :'+ <?php echo e($monan->video->id); ?>);
+			e.preventDefault();
+		    $('.videoplayer').children('iframe').attr('src', '');
+		    $('.modal-background').fadeOut();
+		});
+	</script>
+<?php endif; ?>
+
 <script type="text/javascript">
 	function split(data,id){
 		var nguyenlieu=data;
@@ -319,7 +356,7 @@
 	    })
     });
 
-    var socket = io.connect('http://1.55.49.129:1108');
+    var socket = io.connect('http://localhost:1108');
 
 	function sendComment(id_user,id_monan) {
 		var text = $("#input-comment").val();

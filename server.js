@@ -2,7 +2,7 @@ var app = require('express')();
 var server = require('http').Server(app);
 var request = require('request');
 var io = require('socket.io')(server);
-var fs = require("fs");
+var fs = require("fs"); 
 
 var data_config = fs.readFileSync('config.txt','utf-8');
 var arr_config = data_config.split("=");
@@ -12,8 +12,10 @@ var user_count = 0;
 io.on('connection', function(socket){ 
     user_count ++;
     console.log("có :"+user_count+" đang kết nối..");
+    console.log("socket id : " + socket.id);
 
     socket.on('user posts post',function(data) {   
+        console.log("socket id : " + socket.id);
         var list_name_image = [];
         var list_image_src = data['list_image_src'];
         for(i=0;i<list_image_src.length;i++) {
@@ -38,8 +40,9 @@ io.on('connection', function(socket){
             });
         }
 
+        console.log(data['tieude']);
         var data2 = {
-            'tieude':"tieude",
+            'tieude':data['tieude'],
             'noi_dung':data['noi_dung'],
             'id_loaimon':data['id_loaimon'],
             'id_user':data['id_user'],

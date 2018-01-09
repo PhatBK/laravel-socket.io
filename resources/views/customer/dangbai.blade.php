@@ -154,6 +154,7 @@
                                     <div class="row">
                                         <span>
                                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                                            <input type="text" name="title" id="input-post-title" class="form-control"  placeholder="Tiêu đề" >
                                             <textarea type="text" class="form-control textarea-post-post" placeholder="Hôm nay bạn thế nào "></textarea>
                                         </span>
                                     </div>
@@ -241,8 +242,8 @@
                         <div class="row user-post-title" style="margin-top: 20px">
                             <div class="container">
                                 <div class="col-sm-12">
-                                    {{-- <p class="user-post-title-p1">{{$user_post->tieude}} </p>
-                                    <p class="user-post-title-p2"> độ khó : dễ</p> --}}
+                                    <p class="user-post-title-p1">{{$user_post->tieude}} </p>
+                                    {{-- <p class="user-post-title-p2"> độ khó : dễ</p> --}}
                                 </div>
                             </div>
                         </div>
@@ -1145,7 +1146,7 @@
                         <div class="row user-post-title" style="margin-top: 20px">
                             <div class="container">
                                 <div class="col-sm-12">
-
+                                    <p class="user-post-title-p1">`+data[i].userpost.tieude+` </p>
                                 </div>
                             </div>
                         </div>
