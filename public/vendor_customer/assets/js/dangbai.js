@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:1108');
+var socket = io.connect('http://58.187.15.251:1108');
 
 function clicksenduserpost(id_user_online) {
     var selDiv = $("#selectedFiles"); 

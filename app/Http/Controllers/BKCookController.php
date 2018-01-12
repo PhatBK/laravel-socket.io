@@ -379,13 +379,8 @@ class BKCookController extends Controller {
 			if ($link === "trangchu") {
 				$data = [];
 				$data = MonAn::where('ten_monan', $key)->orwhere('ten_monan', 'like', '%' . $key . '%')->get();
-				if (count($data) > 0) {
-					return response()->json($data);
-				} else {
-					//return response()->json($data);
-				}
-
-			} elseif ($link === "loaimon") {
+				return response()->json($data);
+			} elseif ($link === "kcook.vn/public/loaimon") {
 				$data = [];
 				$loaimon = LoaiMon::where('ten', $key)->orwhere('ten', 'like', '%' . $key . '%')->get();
 				if (isset($loaimon)) {

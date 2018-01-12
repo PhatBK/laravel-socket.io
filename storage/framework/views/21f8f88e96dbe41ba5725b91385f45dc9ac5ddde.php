@@ -2,21 +2,7 @@
 
 <section id="vungmien" class="vungmien danhmucchitiet">
     <div class="container">
-        <h3 class="text-success text-center">Danh sách Nhà Hàng</h3>
-        <div class="row list-group-item">
-            <form method="post">
-                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-                <?php $__currentLoopData = $nhahang; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nh): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-sm-3 col-xs-6 check">
-                    <input type="checkbox" name="checkbox" value="<?php echo e($nh->id); ?>" id="<?php echo e($nh->id); ?>">
-                    <label for="<?php echo e($nh->id); ?>"><?php echo e($nh->ten); ?></label>
-                </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </form>
-        </div>
-
-        <h3 class="text-success text-center" style="margin-top:3em;">Danh sách món ăn</h3>
-
+        <h3 class="text-success text-center" style="margin-top: 0em;">Danh sách món ăn</h3>
         <div id="danhsachcon">
             <?php $__currentLoopData = $monan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <a href="chitietmonannhahang/<?php echo e($m->id); ?>" class=" fooditem col-sm-3 col-xs-12">
@@ -33,6 +19,18 @@
                 <span><i class='fa fa-comments'></i>Sale: <?php echo e($m->khuyenmai); ?>(vnđ)</span></span>
             </a>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <h3 class="text-success text-center" style="margin-top: 1em;">Danh sách Nhà Hàng</h3>
+        <div class="row list-group-item">
+            <form method="post">
+                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                <?php $__currentLoopData = $nhahang; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nh): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-sm-3 col-xs-6 check">
+                    <input type="checkbox" name="checkbox" value="<?php echo e($nh->id); ?>" id="<?php echo e($nh->id); ?>">
+                    <label for="<?php echo e($nh->id); ?>"><?php echo e($nh->ten); ?></label>
+                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </form>
         </div>
     </div>
 </section>

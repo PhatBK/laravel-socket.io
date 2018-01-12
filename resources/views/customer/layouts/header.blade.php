@@ -268,7 +268,7 @@
     <div class="modal-dialog">
              <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="form-group">
-              <input name="key" type="search" oninput="search()" class="form-control" id="key" required="" placeholder="Tìm Kiếm ?">
+              <input name="key" type="search" {{-- oninput="search()" --}} onkeyup="search()" class="form-control" id="key" required="" placeholder="Tìm Kiếm ?">
             </div>
             {{-- <ul class="list-group" id="ketqua">
             </ul> --}}
@@ -288,12 +288,12 @@
             }
         });
         function search(){
-            var key=document.getElementById("key").value.trim();
+            var key=document.getElementById("key").value;
             var url = "{{route('timkiem_monan')}}";
             var link= document.URL;
             link= link.split('/').pop();
             console.log(link);
-            // console.log(link);
+            console.log(key);
             if(link!="nhahang"){
                 $.ajax({
                   type: 'POST',
@@ -301,21 +301,18 @@
                   data: {'key': key,
                           'link': link},
                   success: function(response){
+                              console.log("response: ");
                               console.log(response);
                               var str="";
                               var list_monan=response;
-                              if(list_monan.length == 0){
-                                  document.getElementById('ketqua').innerHTML=`<span class='text-info'>Không có kết quả phù hợp...</span>`;
-                              }else{
-                                for (var i=0; i < list_monan.length; i++) {
+                              for (var i=0; i < list_monan.length; i++) {
                                 str+=
                                     "<a  href='chitietmonan/"+ list_monan[i].id +"' class='list-group-item'>"
                                    +"<img src='uploads/monan/"+ list_monan[i].anh_monan +"' width='50px' height='50px' class='img-rounded'>"
                                    +"<span class='text-info'>" + list_monan[i].ten_monan +"</span>"
                                    +"</a>";
-                                }
-                                document.getElementById('ketqua').innerHTML=str;
                               }
+                              document.getElementById('ketqua').innerHTML=str;
                           },
                   error: function(error){
                           console.log("l?i");
