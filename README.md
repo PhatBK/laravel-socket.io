@@ -61,4 +61,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### - Import lại Database
 ### - Trong Terminal chạy lệnh: php artisan serve
 ### - Mở một Terminal mới chạy lệnh: node server..js
-#### - (chú ý :cần cài đặt máy chủ Xammpp,copy project vào trong: htdocs)
+#### - (chú ý :cần cài đặt máy chủ Xampp,copy project vào trong: htdocs)
