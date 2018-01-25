@@ -52,13 +52,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 # bkcook.vn
-#Cài đặt ứng dụng:
-## Clone project tại đây
-## Mở Terminal tại thư mục chứa projcet
-## Chạy lệnh: composer install
-## Chạy lệnh : npm install
-## Cấu hình lại file : .env ( database)
-## Import lại Database
-## Trong Terminal chạy lệnh: php artisan serve
-## Mở một Terminal mới chạy lệnh: node server..js
-### (chú ý :cần cài đặt máy chủ Xammpp,copy project vào trong: htdocs)
+# Cài đặt ứng dụng:
+### Clone project tại đây
+### Mở Terminal tại thư mục chứa projcet
+### Chạy lệnh: composer install
+### Chạy lệnh : npm install
+### Cấu hình lại file : .env ( database)
+### Import lại Database
+### Trong Terminal chạy lệnh: php artisan serve
+### Mở một Terminal mới chạy lệnh: node server..js
+#### (chú ý :cần cài đặt máy chủ Xammpp,copy project vào trong: htdocs)
