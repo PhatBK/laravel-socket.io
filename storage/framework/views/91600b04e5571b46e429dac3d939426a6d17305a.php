@@ -587,14 +587,13 @@
               <label for="psw" style="color: black"><span><i class="fa fa-eye" aria-hidden="true"></i></span> Mật Khẩu</label>
               <input type="password" class="form-control" id="psw" name="password" required="" placeholder="Nhập Mật Khẩu">
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Nhớ Tôi</label>
-            </div>
+           
               <button type="submit" class="btn btn-success btn-block" id="btn-signin"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Đăng Nhập</button>
           </form>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" id="btn-signin-cancel" data-dismiss="modal"><span ><i class="fa fa-times" aria-hidden="true"></i></span> Thoát</button>
+          <button style="margin-left: 21px;height: 34px;background-color: #cbc042;padding-top: 4px;border-radius: 6px;" type="submit" class="btn-default pull-left"><a href="<?php echo e(route('google.login')); ?>"> Login with Google <i style="color: red;" class="fa fa-google-plus" aria-hidden="true"></i></a></button>
           <p><u>Chưa Có Tài Khoản ?</u> <a href="javascript:void(0)" class="signup" id="a-signup"> Đăng Ký</a></p>
         </div>
       </div>
@@ -646,9 +645,7 @@
               <input type="file" id="usrname" name="anh" placeholder="Chọn Ảnh">
             </div>
 
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Ghi Nhớ</label>
-            </div>
+            
               <button type="submit" class="btn btn-success btn-block" id="btn-signin"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Đăng Ký</button>
           </form>
         </div>

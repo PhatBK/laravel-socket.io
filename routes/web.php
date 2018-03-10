@@ -276,3 +276,6 @@ Route::get('baidangchitiet/{id}', 'DangBaiController@baidangchitiet');
 // 	return view('customer.thanhvien');
 // });
 Route::get('commentpost', 'BKCookController@getCommentPost');
+
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('google.login');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

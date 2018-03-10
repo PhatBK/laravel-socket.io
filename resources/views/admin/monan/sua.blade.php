@@ -158,7 +158,10 @@
                     <div class="form-group">
                         <label>Chọn ảnh</label>
                         @if($monan -> anh_monan != null)
-                        <input class="form-control" name="tenAnh" value="{{$monan -> anh_monan}}" required=""/><br>
+                        <div class="form-group">
+                            <img src="uploads/monan/{{$monan -> anh_monan}}" alt="Kết nối Internet không ổn định" style="width: 580px;height: 350px">
+                        </div>
+                        {{-- <input class="form-control" name="tenAnh" value="{{$monan -> anh_monan}}" required=""/><br> --}}
                         <input type="file" name="image" multiple="multiple" onchange="checkImage(this)">
                         @else
                         <h4 class="form-control">Không có ảnh nào!</h4><br>

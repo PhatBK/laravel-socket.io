@@ -175,6 +175,7 @@
                         <div class="row user-post-title" style="margin-top: 20px">
                             <div class="container">
                                 <div class="col-sm-12">
+                                    <p class="user-post-title-p1"><?php echo e($user_post->tieude); ?> </p>
                                     
                                 </div>
                             </div>
