@@ -1,4 +1,19 @@
 # Xây dựng hệ thống Website : Ẩm Thực Quanh Ta ,sử dụng Laravel framework,Socket.io,Ajax...
+
+# bkcook.vn
+# Cài đặt ứng dụng:
+### - Clone project tại đây
+### - Mở Terminal tại thư mục chứa projcet
+### - Chạy lệnh: composer install
+### - Chạy lệnh : npm install
+### - Cấu hình lại file : .env ( database)
+### - Import lại Database
+### - Trong Terminal chạy lệnh: php artisan serve
+### - Mở một Terminal mới chạy lệnh: node server..js
+###### - chú ý :cần cài đặt máy chủ Xampp,copy project vào trong: htdocs
+###### - copy file: .env.example vào file mới lưu lại : .env để cấu hình các tham số hệ thống
+# Tài liệu hướng dẫn cấu hình và sử dụng hệ thống:
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
@@ -52,17 +67,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-# bkcook.vn
-# Cài đặt ứng dụng:
-### - Clone project tại đây
-### - Mở Terminal tại thư mục chứa projcet
-### - Chạy lệnh: composer install
-### - Chạy lệnh : npm install
-### - Cấu hình lại file : .env ( database)
-### - Import lại Database
-### - Trong Terminal chạy lệnh: php artisan serve
-### - Mở một Terminal mới chạy lệnh: node server..js
-###### - chú ý :cần cài đặt máy chủ Xampp,copy project vào trong: htdocs
-###### - copy file: .env.example vào file mới lưu lại : .env để cấu hình các tham số hệ thống
-# Tài liệu hướng dẫn cấu hình và sử dụng hệ thống:
 
