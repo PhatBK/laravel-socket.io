@@ -101,6 +101,16 @@ img.img-responsive.img-rounded {
 	height: auto;
     margin-right: 5%;
 }
+#thamkhaothem {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+	margin: 2em 0px;
+	/*padding: 20px 0 20px 0;*/
+	width: auto;
+	height: auto;
+	overflow: auto;
+    /*margin-right: 5%;*/
+    /*margin-top: 5%;*/
+}
 #nguyenlieu-monanlienquan #chitiet ul {
 	list-style-type: square;
 }

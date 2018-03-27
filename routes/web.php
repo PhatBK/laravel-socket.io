@@ -9,8 +9,21 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
 Route::get('/', ['as' => 'trangchu', 'uses' => 'BKCookController@trangchu']);
+
+
+// route phần nâng cấp hệ thống
+Route::get('test','NangCapHeThongController@getTest');
+Route::get('crawl','NangCapHeThongController@crawlerAction');
+Route::get('goi-y-monan/{id}','NangCapHeThongController@getMonAn');
+Route::get('channel','NangCapHeThongController@getChannel');
+Route::get('nguyenlieu/{id}','NangCapHeThongController@getNguyenLieu');
+Route::get('crawler','NangCapHeThongController@getCrawler');
+Route::get('bmr/{cannang}/{chieucao}/{tuoi}/{gioitinh}','NangCapHeThongController@tinhBMR');
+
+
+
+
 
 Route::get('admin/dangnhap', 'UserController@getAdminLogin');
 Route::post('admin/dangnhap', 'UserController@postAdminLogin');
@@ -64,7 +77,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::post('them', ['as' => 'themTheLoai', 'uses' => 'TheLoaiController@postThemTheLoai']);
 		Route::get('xoa/{id}', ['as' => 'xoaTheLoai', 'uses' => 'TheLoaiController@xoaTheLoai']);
 	});
-
 //admin -> loaimon
 	Route::group(['prefix' => 'loaimon'], function () {
 		Route::get('danhsach', ['as' => 'danhSachLoaiMon', 'uses' => 'LoaiMonController@getDanhSach']);
@@ -107,7 +119,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::post('them', ['as' => 'themVungMien', 'uses' => 'VungMienController@postThemVungMien']);
 		Route::get('xoa/{id}', ['as' => 'xoaVungMien', 'uses' => 'VungMienController@xoaVungMien']);
 	});
-
 // quản lý món ăn và các thực thể liên quan
 	Route::group(['prefix' => 'monan'], function () {
 		Route::get('danhsach', [
@@ -196,7 +207,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		]);
 	});
 });
-
 //Phần dành cho nhà hàng liên kết
 Auth::routes();
 Route::prefix('nhahang')->group(function () {
@@ -219,8 +229,10 @@ Route::prefix('nhahang')->group(function () {
 
 	Route::get('/sua/{id}/{tenkhongdau}', 'NhaHangController@getSuaThongTin');
 	Route::post('/sua/{id}/{tenkhongdau}', 'NhaHangController@postSuaThongTin');
-
 });
+
+
+
 
 //Phần dành cho trang chủ
 Route::get('loaimon', ['as' => 'loaimon', 'uses' => 'BKCookController@View_loaimon']);
@@ -268,14 +280,7 @@ Route::get('findLoaiMon', 'DangBaiController@findLoaiMon');
 Route::get('loadthembaiviet', 'DangBaiController@loadthembaiviet');
 Route::get('baidangchitiet/{id}', 'DangBaiController@baidangchitiet');
 
-// Route::get('monan', function () {
-// 	return view('customer.monan');
-// });
 
-// Route::get('thanhvien', function () {
-// 	return view('customer.thanhvien');
-// });
 Route::get('commentpost', 'BKCookController@getCommentPost');
-
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('google.login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

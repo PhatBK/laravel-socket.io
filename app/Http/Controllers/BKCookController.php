@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 
 class BKCookController extends Controller {
-
+	public $protein;
+	public $lipit;
+	public $gluxit;
+	
 	public function __construct() {
 		$foods = count(MonAn::all());
 		$users = count(User::all());
@@ -32,6 +35,9 @@ class BKCookController extends Controller {
 		view()->share('nhahangs', $nhahangs);
 		view()->share('videos', $videos);
 		view()->share('baiviets', $baiviets);
+
+	}
+	public function setCalos(){
 
 	}
 	public function trangchu() {

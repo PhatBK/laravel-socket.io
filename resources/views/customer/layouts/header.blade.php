@@ -23,20 +23,15 @@
 
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
-                                   <li><a href="trangchu"><img style="display: inline-block; width: 20px;" src="vendor_customer/assets/images/logo.png" alt=""></a></li>
-                                    @if(Auth::user())
-                                    <li><a><i class="fa fa-user fa-fw">-: </i><b style="color: red;">{{ Auth::user()->tentaikhoan }}</b></a>
+                                   <li><a href="trangchu"><img style="display: inline-block; width: 20px;" src="vendor_customer/assets/images/logo.png" alt="">
+                                       </a>
                                     </li>
-                                    @endif
-                                    @if(Auth::guard('nhahang')->user())
-                                    <li><a><i class="fa fa-github-alt">-: </i><b style="color: red;">{{ Auth::guard('nhahang')->user()->username }}</b></a>
-                                    </li>
-                                    @endif
+                                    <li><a href="channel">Channel</a></li>
                                     <li><a href="trangchu">Trang Chủ</a></li>
                                     <li><a href="{{route('loaimon')}}">Thể Loại</a></li>
                                     <li><a href="{{route('mucdich')}}">Mục Đích</a></li>
                                      <li><a href="{{route('congdung')}}">Công Dụng</a></li>
-                                    <li><a href="{{route('vungmien')}}">Vùng Miền</a></li>
+                                    <li><a href="{{route('vungmien')}}">Ăn Cả Thế Giới</a></li>
                                     <li>
                                         <a href="" data-toggle="dropdown" role="button" aria-haspopup="true"
                                                aria-expanded="false" class="search" >
@@ -71,6 +66,14 @@
                                       @if(Auth::user()->level == 2)
                                           <li><a href="javascript:void(0)" class="info" onclick="logTT()"><b style="color: red;">Tài Khoản</b></a></li>
                                       @endif
+                                    @endif
+                                    @if(Auth::user())
+                                    <li><a><i class="fa fa-user fa-fw">-: </i><b style="color: red;">{{ Auth::user()->tentaikhoan }}</b></a>
+                                    </li>
+                                    @endif
+                                    @if(Auth::guard('nhahang')->user())
+                                    <li><a><i class="fa fa-github-alt">-: </i><b style="color: red;">{{ Auth::guard('nhahang')->user()->username }}</b></a>
+                                    </li>
                                     @endif
                                     @if( Auth::user() || Auth::guard('nhahang')->user())
                                         <li><a href="dangxuat">Đăng Xuất</a></li>

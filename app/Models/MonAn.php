@@ -39,5 +39,8 @@ class MonAn extends Model {
 	public function danhgiamonan() {
 		return $this->hasMany('App\Models\DanhGiaMonAn', 'id_monan', 'id');
 	}
+	public function nguyenlieu(){
+		return $this->hasMany('App\Models\NguyenLieu','id_monan','id');
+	}
 
 }

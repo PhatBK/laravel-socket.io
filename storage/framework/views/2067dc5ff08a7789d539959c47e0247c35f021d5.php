@@ -92,6 +92,62 @@
 							<p>Độ khó</p>
 							<b> <?php echo e($monan->do_kho); ?></b>
 						</div>
+						<div style="text-align: center;">
+							<button type="button" style="background: red;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+								<p>Gợi Ý Món Ăn Cho Bạn !!</p>
+							</button>
+							<!-- Modal chứa các món ăn có thể nấu cùng món đan xem -->
+							<div id="myModal" class="modal fade" role="dialog">
+								  <div class="modal-dialog">
+								    <!-- Modal content-->
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        <h4 class="modal-title">Các Món Có Thể Ăn Cùng Với :<?php echo e($monan->ten_monan); ?>!!</h4>
+								      </div>
+								      <div class="modal-body">
+								      	<div class="row">
+									      	<div class="col-md-3">
+										      	
+										      	<a href="" title="Xem chi tiết món ăn:<?php echo e($monan->ten_monan); ?>" target="_blank">
+										      	<p style="color: red;"><?php echo e($monan->ten_monan); ?></p>
+										      	<img src="uploads/monan/<?php echo e($monan->anh_monan); ?>" alt="kết nối kém.." width="100px" height="120px">
+										      	<br><br>
+										      	<u>Xem chi tiết</u> 
+										        </a>
+
+										    </div>
+										    <div class="col-md-3">
+												
+												<p style="color: red;"><?php echo e($monan->ten_monan); ?></p>
+										        <img src="uploads/monan/<?php echo e($monan->anh_monan); ?>" alt="kết nối kém.." width="100px" height="120px">
+									      	</div>
+									      	<div class="col-md-3">
+												
+												<p style="color: red;"><?php echo e($monan->ten_monan); ?></p>
+										        <img src="uploads/monan/<?php echo e($monan->anh_monan); ?>" alt="kết nối kém.." width="100px" height="120px">
+									      	</div>
+									    </div>
+									    
+										<div class="row" style="margin-top:5em;overflow: auto; ">
+											<div class="col-md-12">
+												<b>
+												– Không cho mì chính vào những món món ăn có nhiều vị chua. Vì mì chính khó hòa tan trong nước chua, đồng thời còn phát sinh ra một loại axít mới có hại cho sức khỏe.
+												– Không cho thêm nước lạnh khi đang hầm xương, thịt. Vì trong thịt, xương có chứa một hàm lượng lớn protein và lipid. Nếu cho thêm nước lạnh, nhiệt độ trong nồi hạ đột ngột, protein và lipid đông lại, món ăn không còn chất bố dưỡng nữa
+											    </b>
+											</div>
+										</div>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal" style="background: black;">
+								        	Thoát
+								        </button>
+								      </div>
+								    </div>
+								  </div>
+							</div>
+							
+						</div>
 				</div>
 			</div>
 				<?php if($monan->video): ?>
@@ -151,6 +207,14 @@
 					</div>
 				</div>
 			</div>
+			<div id="thamkhaothem" class="col-md-3" style="background-color: #F8E9A1; font-family: 'segoe ui light';" >
+				<p>Tham khảo thêm </p>
+				<p>Tham khao them </p>
+				<p>Tham khao them </p>
+				<p>Tham khảo thêm </p>
+				<p>Tham khảo thêm </p>
+				<p>Tham khao them </p>
+			</div>
 		</div>
 		<br>
 		<div class="row">
@@ -191,20 +255,7 @@
 	                        </div>
 	                        <div role="tabpanel" class="tab-pane" id="hinhanh">
 	                        	<h4>Hình ảnh món ăn</h4><hr>
-								<img src="vendor_customer/assets/images/ha1.jpg">
-								<img src="vendor_customer/assets/images/ha2.jpg">
-								<img src="vendor_customer/assets/images/ha3.jpg">
-								<img src="vendor_customer/assets/images/ha4.jpg">
-								<img src="vendor_customer/assets/images/ha5.jpg">
-								<img src="vendor_customer/assets/images/ha6.jpg">
-								<img src="vendor_customer/assets/images/ha7.jpg">
-								<img src="vendor_customer/assets/images/ha8.jpg">
-								<img src="vendor_customer/assets/images/ha9.jpg">
-								<img src="vendor_customer/assets/images/ha10.jpg">
-								<img src="vendor_customer/assets/images/ha11.jpg">
-								<img src="vendor_customer/assets/images/ha12.jpg">
-								<img src="vendor_customer/assets/images/ha13.jpg">
-								<img src="vendor_customer/assets/images/ha14.jpg">
+								
 	                        </div>
 	                        <div role="tabpanel" class="tab-pane" id="video">
 	                        	<h4>Video món ăn</h4><hr>

@@ -1,4 +1,4 @@
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="background: #F8E9A1;">
     <div class="container">
         <div class="form-group"  style="text-align: center;">
             <div class="row" style="text-align: center;">
@@ -17,7 +17,7 @@
                    <a style="color: red;" href="https://www.facebook.com/duynguyen1521/" target="_blank">Duy Nguyễn</a>,
                    <a style="color: blue;" href="https://www.facebook.com/" target="_blank">Linh Võ</a>
                    <br/>
-                   <a href="https://www.hust.edu.vn/" target="_blank"><u>Team : Bách Khoa Hà Nội</u></a>
+                   <a href="https://hust.edu.vn" target="_blank" title="Team Bách Khoa Hà Nội">Team Bách Khoa Hà Nội</a>
         </div>
      </div>
     </div>
