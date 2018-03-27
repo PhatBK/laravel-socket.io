@@ -6,10 +6,20 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "fideloper/proxy": "~3.3",
-        "laravel/framework": "5.5.*",
+        "fabpot/goutte": "^3.2",
+        "fideloper/proxy": "~4.0",
+        "jaybizzle/crawler-detect": "^1.2",
+        "jaybizzle/laravel-crawler-detect": "1.*",
+        "laravel/framework": "5.6.*",
+        "laravel/scout": "^4.0",
         "laravel/socialite": "^3.0",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "sunra/php-simple-html-dom-parser": "^1.5",
+        "symfony/browser-kit": "^4.0",
+        "symfony/css-selector": "^4.0",
+        "symfony/dom-crawler": "^4.0",
+        "symfony/phpunit-bridge": "^4.0",
+        "symfony/serializer": "^4.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -26,7 +36,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/function/function.php"
+            "app/function/function.php",
+            "app/Services/functions.php"
         ]
     },
     "autoload-dev": {
