@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\TheLoai;
 use App\Models\NguyenLieu;
+use App\Models\MonAnNguyenLieu;
 use App\Models\MonAn;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
@@ -16,53 +18,109 @@ use Symfony\Component\BrowserKit\Response;
 
 class NangCapHeThongController extends Controller
 {
+    protected $BMR_Nam = 0 ;
+    protected $BMR_Nu = 0 ;
+    protected $BMR_Child = 0 ;
+
     public function tinhBMR($cannang,$chieucao,$tuoi,$gioitinh){
         $calo = 4.186;
         $bmr = 0;
-        $cannang    = (float)   $cannang;
-        $chieucao   = (float)   $chieucao;
-        $tuoi       = (int)     $tuoi;
-        $gioitinh   = (int)     $gioitinh;
-        if($gioitinh == 0){
-            $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
-        }else if($gioitinh == 1){
-            $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
-        }else{
-            $bmrNam = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
-            $bmrNu  = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
-            $bmr    = rand($bmrNu + 50 ,$bmrNam - 50);
+        if(Auth::user()){
+            $user = Auth::user();
+            $tuoi = $user->tuoi;
+
+            if(changeTitle($user->gioitinh) == "nam"){
+                $cannang = 0;
+                $chieucao = 0;
+                $gioitinh = 1;
+
+                if($tuoi < 18){
+                    $cannang = rand(30,60);
+                    $chieucao = rand(130,165);
+                }
+                if($tuoi >= 18){
+                    $cannang = rand(50,80);
+                    $chieucao = rand(160,185);
+                }
+
+                $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
+                echo "Ban la : Nam";
+                echo "<br>";
+
+            }
+            if(changeTitle($user->$gioitinh) == "nu"){
+                $cannang = 0;
+                $chieucao = 0;
+                $gioitinh = 0;
+                if($tuoi < 18){
+                    $cannang = rand(30,50);
+                    $chieucao = rand(120,150);
+                }
+                if($tuoi >= 18){
+                    $cannang = rand(40,60);
+                    $chieucao = rand(140,170);
+                }
+                $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
+                echo "Ban la :Nu";
+                echo "<br>";
+            }if(changeTitle($user->gioitinh) == "khong xac dinh"){
+                $cannang = 0;
+                $chieucao = 0;
+                if($tuoi < 18){
+                    $cannang = (rand(30,50) + rand(30,60))/2;
+                    $chieucao = (rand(120,150) + rand(130,165))/2;
+                }
+                if($tuoi >= 18){
+                    $cannang = (rand(40,60) + rand(50,80))/2;
+                    $chieucao = (rand(140,170) + rand(160,185))/2;
+                }
+                $bmrNam = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
+                $bmrNu  = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
+
+                $bmr    = rand($bmrNu + 50 ,$bmrNam - 50);
+                echo "Ban la : Khong Xac Dinh";
+                echo "<br>";
+            }
+           
+            echo "Cam on ban da login";
+            echo "<br>";
+
+        }
+        else{
+
+            $cannang    = (float)   $cannang;
+            $chieucao   = (float)   $chieucao;
+            $tuoi       = (int)     $tuoi;
+            $gioitinh   = (int)     $gioitinh;
+            if($gioitinh == 0){
+                $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
+            }else if($gioitinh == 1){
+                $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
+            }else{
+                $bmrNam = 10*$cannang + 6.25*$chieucao - 5*$tuoi + 5;
+                $bmrNu  = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
+                $bmr    = rand($bmrNu + 50 ,$bmrNam - 50);
+            }
+            
+            echo "Ban chua login";
+            echo "<br>";
         }
         return $bmr;
     }
+    public function goiYBuaAn($id){
+
+    }
     public function getMonAn($id){
         $monan = MonAn::find($id);
-        $nguyenlieus = $monan->nguyenlieu();
-        // dd($nguyenlieus);
-        // dd($monan);
-
+        $nguyenlieus = $monan->monan_nguyenlieu();
         return $monan;
-    }
-    public function goiYBuaAn($id){
-    }
-    public function getChannel(){
-    	return view('customer.channel');
     }
     public function getNguyenLieu($id){
         $monan = MonAn::find($id);
-    	$nguyenlieus = $monan->nguyenlieu();
-        dd($nguyenlieus);
-    	// return $nguyenlieus;
+        $monan_nguyenlieus = $monan->monan_nguyenlieu();
     }
-    public function getCrawler(){
-        $client = new Client([
-            'timeout'  => 2.0,
-        ]);
-        $crawler_get = $client->request('GET', 'http://sieuthicobap.com');
-        $crawler_post = $client->request('POST','https://www.cooky.vn/');
-        $status_code = $client->getResponse()->getStatus();
-        if($status_code == 200){
-            // dd($crawler_get);
-        }
+    public function getChannel(){
+    	return view('customer.channel');
     }
     public function crawlerAction()
     {
