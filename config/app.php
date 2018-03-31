@@ -39,7 +39,7 @@ return [
 		    |
 	*/
 
-	'debug' => env('APP_DEBUG', false),
+	'debug' => env('APP_DEBUG', true),
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -79,7 +79,8 @@ return [
 		    |
 	*/
 
-	'locale' => 'en',
+	// 'locale' => 'en',
+	'locale' => 'vi',
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -92,7 +93,8 @@ return [
 		    |
 	*/
 
-	'fallback_locale' => 'en',
+	// 'fallback_locale' => 'en',
+	'fallback_locale' => 'vi',
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -164,6 +166,7 @@ return [
 		Illuminate\Translation\TranslationServiceProvider::class,
 		Illuminate\Validation\ValidationServiceProvider::class,
 		Illuminate\View\ViewServiceProvider::class,
+		
 
 		/*
 			         * Package Service Providers...
@@ -179,6 +182,8 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
+		// Weidner\Goutte\GoutteServiceProvider::class,
+		'CloudCreativity\LaravelJsonApi\ServiceProvider',
 
 	],
 
@@ -229,7 +234,9 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-		'Crawler'   => 'Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect',
+		'Crawler'   => Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect::class,
+		// 'Goutte' => Weidner\Goutte\GoutteFacade::class,
+		'JsonApi' => CloudCreativity\LaravelJsonApi\Facades\JsonApi::class,
 
 	],
 

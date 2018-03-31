@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "cloudcreativity/laravel-json-api": "^0.12.0",
         "fabpot/goutte": "^3.2",
         "fideloper/proxy": "~4.0",
         "jaybizzle/crawler-detect": "^1.2",
@@ -22,6 +23,7 @@
         "symfony/serializer": "^4.0"
     },
     "require-dev": {
+        "cloudcreativity/json-api-testing": "^0.3.0",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",

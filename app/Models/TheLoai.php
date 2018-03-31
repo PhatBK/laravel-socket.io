@@ -10,6 +10,6 @@ class TheLoai extends Model {
 		return $this->hasMany('App\Models\LoaiMon', 'id_theloai', 'id');
 	}
 	public function monan() {
-		return $this->hasManyThrough('App\Models\MonAn', 'App\Models\LoaiMon', 'id_theloai', 'id_loaimon', 'id');
+		return $this->hasManyThrough('App\Models\MonAn', 'App\Models\LoaiMon', 'id_theloai', 'id_loaimon', 'id','id');
 	}
 }

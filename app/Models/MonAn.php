@@ -19,6 +19,9 @@ class MonAn extends Model {
 	public function vungmien() {
 		return $this->belongsTo('App\Models\VungMien', 'id_vungmien', 'id');
 	}
+	public function nguyenlieu(){
+		return $this->belongsToMany('App\Models\NguyenLieu','App\Models\MonAnNguyenLieu','id_monan','id_nguyenlieu');
+	}
 
 	// tạo liên kết xuôi đi các bảng
 	public function cacbuocnau() {

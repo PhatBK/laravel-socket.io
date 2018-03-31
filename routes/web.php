@@ -10,15 +10,20 @@
 |
  */
 Route::get('/', ['as' => 'trangchu', 'uses' => 'BKCookController@trangchu']);
+Route::get('/','BKCookController@trangchu');
 
 
 // route phần nâng cấp hệ thống
-Route::get('test','NangCapHeThongController@getTest');
-Route::get('crawl','NangCapHeThongController@crawlerAction');
-Route::get('goi-y-monan/{id}','NangCapHeThongController@getMonAn');
+Route::get('test/{id}','NangCapHeThongController@testHasManyThrough');
+Route::get('xem-mot-mon/{id}','NangCapHeThongController@getMonAn');
+Route::get('api','NangCapHeThongController@getAPI');
 Route::get('channel','NangCapHeThongController@getChannel');
 Route::get('nguyenlieu/{id}','NangCapHeThongController@getNguyenLieu');
+Route::get('goi-y/{id}','NangCapHeThongController@goiYBuaAn');
+
+Route::get('crawl','NangCapHeThongController@crawlerAction');
 Route::get('crawler','NangCapHeThongController@getCrawler');
+
 Route::get('bmr/{cannang}/{chieucao}/{tuoi}/{gioitinh}','NangCapHeThongController@tinhBMR');
 
 

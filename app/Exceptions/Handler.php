@@ -1,8 +1,11 @@
 <?php
 namespace App\Exceptions;
+
+use CloudCreativity\LaravelJsonApi\Exceptions\HandlesErrors;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Neomerx\JsonApi\Exceptions\JsonApiException;
 
 class Handler extends ExceptionHandler {
 	/**
@@ -17,6 +20,7 @@ class Handler extends ExceptionHandler {
 		\Illuminate\Database\Eloquent\ModelNotFoundException::class,
 		\Illuminate\Session\TokenMismatchException::class,
 		\Illuminate\Validation\ValidationException::class,
+		JsonApiException::class,
 	];
 	/**
 	 * Report or log an exception.
@@ -37,6 +41,10 @@ class Handler extends ExceptionHandler {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function render($request, Exception $exception) {
+		
+		if ($this->isJsonApi()) {
+        	return $this->renderJsonApi($request, $exception);
+      	}
 		return parent::render($request, $exception);
 	}
 	/**

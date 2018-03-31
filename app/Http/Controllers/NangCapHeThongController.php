@@ -9,6 +9,7 @@ use App\Models\TheLoai;
 use App\Models\NguyenLieu;
 use App\Models\MonAnNguyenLieu;
 use App\Models\MonAn;
+use App\Models\LoaiMon;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Symfony\Component\DomCrawler\Crawler;
@@ -21,7 +22,7 @@ class NangCapHeThongController extends Controller
     protected $BMR_Nam = 0 ;
     protected $BMR_Nu = 0 ;
     protected $BMR_Child = 0 ;
-
+    // tính dinh dưỡng cho một người
     public function tinhBMR($cannang,$chieucao,$tuoi,$gioitinh){
         $calo = 4.186;
         $bmr = 0;
@@ -29,7 +30,8 @@ class NangCapHeThongController extends Controller
             $user = Auth::user();
             $tuoi = $user->tuoi;
 
-            if(changeTitle($user->gioitinh) == "nam"){
+            if(strcmp($user->gioitinh,"Nam") == 0){
+
                 $cannang = 0;
                 $chieucao = 0;
                 $gioitinh = 1;
@@ -47,8 +49,8 @@ class NangCapHeThongController extends Controller
                 echo "Ban la : Nam";
                 echo "<br>";
 
-            }
-            if(changeTitle($user->$gioitinh) == "nu"){
+            }else if(strcmp($user->gioitinh,"Nữ") == 0){
+
                 $cannang = 0;
                 $chieucao = 0;
                 $gioitinh = 0;
@@ -63,7 +65,8 @@ class NangCapHeThongController extends Controller
                 $bmr = 10*$cannang + 6.25*$chieucao - 5*$tuoi - 161;
                 echo "Ban la :Nu";
                 echo "<br>";
-            }if(changeTitle($user->gioitinh) == "khong xac dinh"){
+            }else if(strcmp($user->gioitinh,"Không Xác Định") == 0){
+
                 $cannang = 0;
                 $chieucao = 0;
                 if($tuoi < 18){
@@ -85,8 +88,7 @@ class NangCapHeThongController extends Controller
             echo "Cam on ban da login";
             echo "<br>";
 
-        }
-        else{
+        }else{
 
             $cannang    = (float)   $cannang;
             $chieucao   = (float)   $chieucao;
@@ -105,15 +107,20 @@ class NangCapHeThongController extends Controller
             echo "Ban chua login";
             echo "<br>";
         }
+        echo "Nang Luong Ban Can:<br>";
         return $bmr;
     }
+    // gợi ý bữa ăn
     public function goiYBuaAn($id){
-
+        $monan = MonAn::find($id);
+        $nguyenlieus = $monan->nguyenlieu();
+        dd($nguyenlieus);
     }
+    // test API
     public function getMonAn($id){
         $monan = MonAn::find($id);
         $nguyenlieus = $monan->monan_nguyenlieu();
-        return $monan;
+        return response()->json($monan,201);
     }
     public function getNguyenLieu($id){
         $monan = MonAn::find($id);
@@ -122,46 +129,102 @@ class NangCapHeThongController extends Controller
     public function getChannel(){
     	return view('customer.channel');
     }
+
+    // crawl dữ liệu từ các trang trên thực tế
     public function crawlerAction()
     {
 
-        $url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
+        $url = "https://vi.wikipedia.org/wiki/Vi%E1%BB%87t_Nam";
+
         $client = new Client();
 
         $crawler = $client->request('GET', $url);
+
         $links_count = $crawler->filter('a')->count();
         $title_count = $crawler->filter('title')->count();
         
         $all_titles = array();
         $all_links = array();
+
+        $crawler->filter('body > p')->each(function ($node) {
+            echo $node->text()."<br>";
+        });
+
         if($title_count > 0){
             $titles = $crawler->filter('title');
             foreach($titles as $title){
                 $all_titles[] = $title;
             }
             $all_titles = array_unique($all_titles);
-            print_r($all_titles);
+            // print_r($all_titles);
         }else{
             echo " không tìm thấy title nào ..";
         }
         if($links_count > 0){
+
             $links = $crawler->filter('a')->links();
+
             foreach ($links as $link) {
-                $all_links[] = $link->getURI();
+                // $all_links[] = $link->getURI();
+                echo $link->getURI()."<br>";
+                
+                $url_child = $link->getURI();
+                $client_child = new Client();
+
+                $crawler_child = $client_child->request('GET', $url_child);
+                $links_count_child = $crawler_child->filter('a')->count();
+
+                $all_links_child = array();
+
+                if($links_count_child > 0){
+                    $links_child = $crawler_child->filter('a')->links();
+                    foreach ($links_child as $link_child) {
+                        // $all_links_child[] = $link_child->getURI();
+                        echo $link_child->getURI()."<br>";
+                    }
+                    // $all_links_child = array_unique($all_links_child);
+                    // echo "<pre>";
+                    // print_r($all_links_child);
+                    // echo "</pre>";
+                }
+
             }
-            $all_links = array_unique($all_links);
-            echo "Tất cả các link có sẵn từ trang: $url   <pre>"; print_r($all_links);echo "</pre>";
+            // $all_links = array_unique($all_links);
+            // echo "Tất cả các link có sẵn từ trang: $url   <pre>"; print_r($all_links);echo "</pre>";
         } else {
             echo "không có link nào !!";
         }
         die;
     }
+    // viết API cho các ứng dụng khác
     public function getAPI(){
+
         $users = User::all();
         $theloais = TheLoai::all();
-        return [$users,$theloais];
-    }
-    public function getTest(){
+        return response()->json([$users,$theloais],201);
 
     }
+    public function testHasManyThrough($id){
+        $theloai = Theloai::find($id);
+
+        if($theloai != Null){
+            // echo $theloai->ten;
+            // echo "<br>";
+            if($theloai->loaimon()){
+                foreach ($theloai->loaimon() as $lm) {
+                    echo $lm->ten;
+                    echo "<br>";
+                }
+            }
+            $monans = $theloai->monan();
+            foreach ($monans as $ma) {
+                echo $ma->ten_monan;
+                echo "<br>";
+            }
+            // dd($monans);
+        }else{
+            echo "Khong co the loai nay...";
+        }
+    }
+
 }
