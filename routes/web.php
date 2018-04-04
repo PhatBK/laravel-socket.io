@@ -25,6 +25,9 @@ Route::get('crawl','NangCapHeThongController@crawlerAction');
 Route::get('crawler','NangCapHeThongController@getCrawler');
 
 Route::get('bmr/{cannang}/{chieucao}/{tuoi}/{gioitinh}','NangCapHeThongController@tinhBMR');
+Route::get('plotly',function(){
+	return view('plotly.test');
+});
 
 
 

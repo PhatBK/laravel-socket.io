@@ -127,7 +127,8 @@ class NangCapHeThongController extends Controller
         $monan_nguyenlieus = $monan->monan_nguyenlieu();
     }
     public function getChannel(){
-    	return view('customer.channel');
+        return changeTitle("Nguyễn Huy Phát,sinh viên năm 4 đại học bách khoa");
+    	// return view('customer.channel');
     }
 
     // crawl dữ liệu từ các trang trên thực tế

@@ -38,8 +38,9 @@
             "App\\": "app/"
         },
         "files": [
-            "app/function/function.php",
-            "app/Services/functions.php"
+            "app/Services/function.php",
+            "app/Services/functions.php",
+            "app/Services/recommender.php"
         ]
     },
     "autoload-dev": {
