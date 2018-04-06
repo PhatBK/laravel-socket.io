@@ -15,6 +15,6 @@ class NguyenLieu extends Model
     	return $this->hasMany('App\Models\MonAnNguyenLieu','id_nguyenlieu','id');
     }
     public function monan(){
-    	return $this->belongsToMany('App\Models\MonAn','App\Models\MonAnNguyenLieu','id_nguyenlieu','id_monan');
+    	return $this->belongsToMany('App\Models\MonAn','App\Models\MonAnNguyenLieu','id_nguyenlieu','id_monan','id');
     }
 }

@@ -10,6 +10,8 @@ use App\Models\NguyenLieu;
 use App\Models\MonAnNguyenLieu;
 use App\Models\MonAn;
 use App\Models\LoaiMon;
+use App\Models\BuaAn;
+use App\Models\MonAn_BuaAn;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Symfony\Component\DomCrawler\Crawler;
@@ -197,20 +199,9 @@ class NangCapHeThongController extends Controller
         }
         die;
     }
-    // viết API cho các ứng dụng khác
-    public function getAPI(){
-
-        $users = User::all();
-        $theloais = TheLoai::all();
-        return response()->json([$users,$theloais],201);
-
-    }
     public function testHasManyThrough($id){
         $theloai = Theloai::find($id);
-
         if($theloai != Null){
-            // echo $theloai->ten;
-            // echo "<br>";
             if($theloai->loaimon()){
                 foreach ($theloai->loaimon() as $lm) {
                     echo $lm->ten;
@@ -226,6 +217,24 @@ class NangCapHeThongController extends Controller
         }else{
             echo "Khong co the loai nay...";
         }
+    }
+    public function getTrangCaNhan($id){
+        $user = User::find($id);
+        // dd($user);
+        // return $user;
+        return view('customer.trangcanhan');
+
+    }
+    // viết API cho các ứng dụng khác
+    public function getAPI(){
+
+        $users = User::all();
+        $theloais = TheLoai::all();
+        $buaan = BuaAn::all();
+        $monan_buaan = MonAn_BuaAn::all();
+        // return response()->json([$buaan],201);
+        return response()->json([$monan_buaan],201);
+
     }
 
 }

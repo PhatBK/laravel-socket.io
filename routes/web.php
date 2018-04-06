@@ -14,25 +14,24 @@ Route::get('/','BKCookController@trangchu');
 
 
 // route phần nâng cấp hệ thống
+Route::get('trangcanhan',function(){
+	return view('customer.trangcanhan');
+});
 Route::get('test/{id}','NangCapHeThongController@testHasManyThrough');
 Route::get('xem-mot-mon/{id}','NangCapHeThongController@getMonAn');
 Route::get('api','NangCapHeThongController@getAPI');
 Route::get('channel','NangCapHeThongController@getChannel');
 Route::get('nguyenlieu/{id}','NangCapHeThongController@getNguyenLieu');
 Route::get('goi-y/{id}','NangCapHeThongController@goiYBuaAn');
-
 Route::get('crawl','NangCapHeThongController@crawlerAction');
 Route::get('crawler','NangCapHeThongController@getCrawler');
-
 Route::get('bmr/{cannang}/{chieucao}/{tuoi}/{gioitinh}','NangCapHeThongController@tinhBMR');
 Route::get('plotly',function(){
 	return view('plotly.test');
 });
 
-
-
-
-
+										/*ngày 10-01-2018*/
+// Route dành cho admin login
 Route::get('admin/dangnhap', 'UserController@getAdminLogin');
 Route::post('admin/dangnhap', 'UserController@postAdminLogin');
 Route::get('admin/dangxuat', 'UserController@getAdminLogout');
@@ -238,9 +237,6 @@ Route::prefix('nhahang')->group(function () {
 	Route::get('/sua/{id}/{tenkhongdau}', 'NhaHangController@getSuaThongTin');
 	Route::post('/sua/{id}/{tenkhongdau}', 'NhaHangController@postSuaThongTin');
 });
-
-
-
 
 //Phần dành cho trang chủ
 Route::get('loaimon', ['as' => 'loaimon', 'uses' => 'BKCookController@View_loaimon']);
