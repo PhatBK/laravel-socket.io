@@ -1,6 +1,7 @@
-# Xây dựng hệ thống Website : Ẩm Thực Quanh Ta ,sử dụng Laravel framework,Socket.io,Ajax...
-
+# Xây dựng hệ thống Website : Ẩm Thực Quanh Ta
+## Sử dụng Laravel framework,Socket.io,Ajax...
 ## bkcook.vn
+
 ## Cài đặt ứng dụng:
 #### - Clone project tại đây:
 #### - Cài đặt môi trường: PHP >= 7.0 ,Nodejs >= 6.0,Mysql>=5.4
@@ -9,6 +10,9 @@
 #### - Chạy lệnh : npm install
 #### - Cấu hình lại file : .env ( database)
 #### - Import lại Database
+#### - Chạy lệnh: php artisan config:clear
+#### - Chạy lệnh: php artisan cache:clear
+#### - Chạy lệnh: php artisan view:clear
 #### - Trong Terminal chạy lệnh: php artisan serve
 #### - Mở một Terminal mới chạy lệnh: node server..js
 ###### - chú ý:Run trên localhost bạn cần cài đặt máy chủ Xampp,copy project vào trong: htdocs
