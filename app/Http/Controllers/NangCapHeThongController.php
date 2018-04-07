@@ -220,20 +220,17 @@ class NangCapHeThongController extends Controller
     }
     public function getTrangCaNhan($id){
         $user = User::find($id);
-        // dd($user);
-        // return $user;
-        return view('customer.trangcanhan');
-
+        return view('customer.trangcanhan',['user'=>$user]);
     }
     // viết API cho các ứng dụng khác
     public function getAPI(){
-
         $users = User::all();
         $theloais = TheLoai::all();
+        $monans = MonAn::all();
         $buaan = BuaAn::all();
         $monan_buaan = MonAn_BuaAn::all();
-        // return response()->json([$buaan],201);
-        return response()->json([$monan_buaan],201);
+
+        return response()->json([$monans],201);
 
     }
 

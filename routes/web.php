@@ -14,9 +14,7 @@ Route::get('/','BKCookController@trangchu');
 
 
 // route phần nâng cấp hệ thống
-Route::get('trangcanhan',function(){
-	return view('customer.trangcanhan');
-});
+Route::get('trangcanhan/{id}','NangCapHeThongController@getTrangCaNhan');
 Route::get('test/{id}','NangCapHeThongController@testHasManyThrough');
 Route::get('xem-mot-mon/{id}','NangCapHeThongController@getMonAn');
 Route::get('api','NangCapHeThongController@getAPI');

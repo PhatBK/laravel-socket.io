@@ -10,6 +10,7 @@
 <head>
     <link rel="shortcut icon" href="icon_customer/favicon.ico" type="image/x-icon">
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="900">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php echo $__env->yieldContent('Ẩm thực quanh ta'); ?></title>
     <base href="<?php echo e(asset('')); ?>">
