@@ -14,6 +14,12 @@ Route::get('/','BKCookController@trangchu');
 
 
 // route phần nâng cấp hệ thống
+Route::get('flask/api-get','RecommendController@get_api');
+Route::get('flask/api-post','RecommendController@post_api');
+Route::get('flask/api-get/users','RecommendController@get_api_data_user');
+Route::get('flask/api-get/monans','RecommendController@get_api_data_monan');
+
+
 Route::get('trangcanhan/{id}','NangCapHeThongController@getTrangCaNhan');
 Route::get('test/{id}','NangCapHeThongController@testHasManyThrough');
 Route::get('xem-mot-mon/{id}','NangCapHeThongController@getMonAn');

@@ -9,6 +9,7 @@
         "cloudcreativity/laravel-json-api": "^0.12.0",
         "fabpot/goutte": "^3.2",
         "fideloper/proxy": "~4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "jaybizzle/crawler-detect": "^1.2",
         "jaybizzle/laravel-crawler-detect": "1.*",
         "laravel/framework": "5.6.*",

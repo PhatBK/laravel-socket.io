@@ -24,7 +24,7 @@ class NangCapHeThongController extends Controller
     protected $BMR_Nam = 0 ;
     protected $BMR_Nu = 0 ;
     protected $BMR_Child = 0 ;
-    // tính dinh dưỡng cho một người
+    // tính dinh dưỡng cho một người theo công thức: BMR
     public function tinhBMR($cannang,$chieucao,$tuoi,$gioitinh){
         $calo = 4.186;
         $bmr = 0;
@@ -218,6 +218,7 @@ class NangCapHeThongController extends Controller
             echo "Khong co the loai nay...";
         }
     }
+    // lấy trang cá nhân một user
     public function getTrangCaNhan($id){
         $user = User::find($id);
         return view('customer.trangcanhan',['user'=>$user]);
@@ -231,7 +232,5 @@ class NangCapHeThongController extends Controller
         $monan_buaan = MonAn_BuaAn::all();
 
         return response()->json([$monans],201);
-
     }
-
 }
