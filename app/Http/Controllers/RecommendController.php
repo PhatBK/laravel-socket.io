@@ -7,17 +7,17 @@ use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
-// use GuzzleHttp\Psr7\Request;
+
 
 class RecommendController extends Controller
 {
     public $data_set = "";
-	// $client = new GuzzleClient();
+	
     public function get_api(){
   
     	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);
     	$res = $client->request('GET', 'api_get/');
-    	
+
     	$code = $res->getStatusCode(); // 200
 		$reason = $res->getReasonPhrase(); // OK
 		
@@ -27,28 +27,29 @@ class RecommendController extends Controller
     	
     	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);
     	$res = $client->request('POST','api_post/');
-    	dd($res);
+    	$body = $res->getBody();
+    	dd((string)$body);
 
     }
     public function get_api_data_user(){
     	
     	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);
     	$res = $client->request('GET','api_get_data/user');
-
     	$body = $res->getBody();
-		
-		$stringBody = (string) $body;
-		$tenBytes = $body->read(10);
-		$remainingBytes = $body->getContents();
-
-    	dd($stringBody,$tenBytes,$remainingBytes);
-    	
+		$users = json_decode($body);
+        dd($users);
     }
     public function get_api_data_monan(){
     	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);
     	$res = $client->request('GET','api_get_data/monan');
     	$body = $res->getBody();
-    	dd((string) $body);
+        $monans = json_decode($body);
+        dd($monans);
+    }
+    public function get_api_data_buaan(){
+    	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);
+    	$res = $client->request('GET','api_get_data/buaan');
+    	$buaans = json_decode($res->getBody());
     }
     public function get_data(){
 

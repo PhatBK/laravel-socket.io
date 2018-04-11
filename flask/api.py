@@ -24,6 +24,10 @@ cursor_monan = connect.cursor()
 cursor_monan.execute("SELECT * from monan")
 data_monan = cursor_monan.fetchall()
 # print data_monan
+cursor_buaan = connect.cursor()
+cursor_buaan.execute("SELECT * from buaan")
+data_buaan = cursor_buaan.fetchall()
+
 
 @app.route('/api_get/',methods=['GET'])
 def api_get():
@@ -38,7 +42,6 @@ def api_get():
 		category = c,
 		item_1 = d,
 		item_2 = e
-
 	)
 
 @app.route('/api_post/',methods=['POST'])
@@ -47,6 +50,7 @@ def api_post():
 		id = "1234554321",
 		user_name = "Nguyen Huy Phat",
 		time_click = "19:06:23",
+		time_remove = "20:02:1",
 		item_0 = "ga ran",
 		item_1 = "ga quay",
 		item_2 = "ga luoc",
@@ -60,3 +64,6 @@ def api_get_data_user():
 @app.route('/api_get_data/monan',methods=['GET'])
 def api_get_data_monan():
 	return jsonify(data_monan)
+@app.route('/api_get_data/buaan',methods=['GET'])
+def api_get_buaan():
+	return jsonify(data_buaan)

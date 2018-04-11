@@ -16,13 +16,13 @@
                             <a href="trangchu"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trở Về Trang Chủ</a>
                         </li>
                         <li>
-                            <a href="{{route('danhSachMonAn')}}"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Món Ăn<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachMonAn')); ?>"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Món Ăn<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachMonAn')}}">Danh Sách Các Món Ăn</a>
+                                    <a href="<?php echo e(route('danhSachMonAn')); ?>">Danh Sách Các Món Ăn</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themMonAn')}}">Thêm Món Ăn</a>
+                                    <a href="<?php echo e(route('themMonAn')); ?>">Thêm Món Ăn</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -52,61 +52,61 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('danhSachTheLoai')}}"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Thể Loại<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachTheLoai')); ?>"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Thể Loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachTheLoai')}}">Danh Sach Các Thể Loại</a>
+                                    <a href="<?php echo e(route('danhSachTheLoai')); ?>">Danh Sach Các Thể Loại</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themTheLoai')}}">Thêm Thể Loại</a>
+                                    <a href="<?php echo e(route('themTheLoai')); ?>">Thêm Thể Loại</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('danhSachLoaiMon')}}"><i class="fa fa-cube fa-fw"></i>&nbsp;Loại Món<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachLoaiMon')); ?>"><i class="fa fa-cube fa-fw"></i>&nbsp;Loại Món<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachLoaiMon')}}">Danh Sách Các Loại Món</a>
+                                    <a href="<?php echo e(route('danhSachLoaiMon')); ?>">Danh Sách Các Loại Món</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themLoaiMon')}}">Thêm Loại Món</a>
+                                    <a href="<?php echo e(route('themLoaiMon')); ?>">Thêm Loại Món</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                          <li>
-                            <a href="{{route('danhSachCongDung')}}"><i class="fa fa-bars"></i>&nbsp;Công Dụng<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachCongDung')); ?>"><i class="fa fa-bars"></i>&nbsp;Công Dụng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachCongDung')}}">Danh Sách Các Công Dụng</a>
+                                    <a href="<?php echo e(route('danhSachCongDung')); ?>">Danh Sách Các Công Dụng</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themCongDung')}}">Thêm Công Dụng</a>
+                                    <a href="<?php echo e(route('themCongDung')); ?>">Thêm Công Dụng</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('danhSachMucDich')}}"><i class="fa fa-adjust"></i>&nbsp;Mục Đích<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachMucDich')); ?>"><i class="fa fa-adjust"></i>&nbsp;Mục Đích<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachMucDich')}}">Danh Sách Các Mục Đích</a>
+                                    <a href="<?php echo e(route('danhSachMucDich')); ?>">Danh Sách Các Mục Đích</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themMucDich')}}">Thêm Mục Đích</a>
+                                    <a href="<?php echo e(route('themMucDich')); ?>">Thêm Mục Đích</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('danhSachVungMien')}}"><i class="glyphicon glyphicon-globe"></i>&nbsp;Vùng Miền<span class="fa arrow"></span></a>
+                            <a href="<?php echo e(route('danhSachVungMien')); ?>"><i class="glyphicon glyphicon-globe"></i>&nbsp;Vùng Miền<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('danhSachVungMien')}}">Danh Sách Các Vùng Miền</a>
+                                    <a href="<?php echo e(route('danhSachVungMien')); ?>">Danh Sách Các Vùng Miền</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themVungMien')}}">Thêm Vùng Miền</a>
+                                    <a href="<?php echo e(route('themVungMien')); ?>">Thêm Vùng Miền</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

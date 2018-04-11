@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\TheLoai;
 use App\Models\NguyenLieu;
 use App\Models\MonAnNguyenLieu;
 use App\Models\MonAn;
-use App\Models\LoaiMon;
 use App\Models\BuaAn;
 use App\Models\MonAn_BuaAn;
+use App\Models\User;
+use App\Models\TheLoai;
+use App\Models\LoaiMon;
+
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Symfony\Component\DomCrawler\Crawler;
@@ -233,4 +234,50 @@ class NangCapHeThongController extends Controller
 
         return response()->json([$monans],201);
     }
+
+    // Phần quản lý về nguyên liệu
+    public function get_danhsach_nguyenlieu(){
+
+        $nguyenlieus = NguyenLieu::all();
+        // dd($nguyenlieus);
+        return view('admin.nguyenlieu.danhsach',['nguyenlieus'=>$nguyenlieus]);
+        
+    }
+    public function get_them_nguyenlieu(){
+        return view('admin.nguyenlieu.them');
+    }
+    public function post_them_nguyenlieu(Request $req){
+        $nguyenlieu = new NguyenLieu;
+
+    }
+    public function get_sua_nguyenlieu($id){
+
+    }
+    public function post_sua_nguyenlieu(Request $req){
+
+
+    }
+    public function get_xoa_nguyenlieu($id){
+
+    }
+    // Phân quản lý về Bữa ăn
+    public function get_danhsach_buaan(){
+
+    }
+    public function get_them_buaan(){
+
+    }
+    public function post_them_buaan(){
+
+    }
+    public function get_sua_buaan(){
+
+    }
+    public function post_sua_buaan(){
+
+    }
+    public function get_xoa_buaan(){
+        
+    }
+
 }

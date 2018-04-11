@@ -13,11 +13,16 @@ Route::get('/', ['as' => 'trangchu', 'uses' => 'BKCookController@trangchu']);
 Route::get('/','BKCookController@trangchu');
 
 
-// route phần nâng cấp hệ thống
+				// route phần nâng cấp hệ thống
+
+// route phần giao tiếp với flask cho chức năng recommend
 Route::get('flask/api-get','RecommendController@get_api');
 Route::get('flask/api-post','RecommendController@post_api');
 Route::get('flask/api-get/users','RecommendController@get_api_data_user');
 Route::get('flask/api-get/monans','RecommendController@get_api_data_monan');
+Route::get('flask/api-get/buaans','RecommendController@get_api_data_buaan');
+
+
 
 
 Route::get('trangcanhan/{id}','NangCapHeThongController@getTrangCaNhan');
@@ -216,6 +221,33 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'as' => 'chiTietMonAn',
 			'uses' => 'MonAnController@xemChiTiet',
 		]);
+	});
+
+// quản lý nguyên liệu cho món ăn
+	Route::group(['prefix'=> 'nguyenlieu'],function(){
+		Route::get('danhsach','NangCapHeThongController@get_danhsach_nguyenlieu');
+
+		Route::get('them','NangCapHeThongController@get_them_nguyenlieu');
+		Route::post('them','NangCapHeThongController@post_them_nguyenlieu');
+
+		Route::get('sua/{id}','NangCapHeThongController@get_sua_nguyenlieu');
+		Route::post('sua/{id}','NangCapHeThongController@post_sua_nguyenlieu');
+
+		Route::get('xoa/{id}','NangCapHeThongController@get_xoa_nguyenlieu');
+
+	});
+// quản lý một bữa ăn 
+	Route::group(['prefix'=>'buaan'],function(){
+		Route::get('danhsach','NangCapHeThongController@get_danhsach_buaan');
+
+		Route::get('them','NangCapHeThongController@get_them_buaan');
+		Route::get('them','NangCapHeThongController@post_them_buaan');
+
+		Route::get('sua','NangCapHeThongController@get_sua_buaan');
+		Route::get('sua','NangCapHeThongController@post_sua_buaan');
+
+		Route::get('xoa','NangCapHeThongController@get_xoa_buaan');
+
 	});
 });
 //Phần dành cho nhà hàng liên kết
