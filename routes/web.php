@@ -223,6 +223,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		]);
 	});
 
+
 // quản lý nguyên liệu cho món ăn
 	Route::group(['prefix'=> 'nguyenlieu'],function(){
 		Route::get('danhsach','NangCapHeThongController@get_danhsach_nguyenlieu');
@@ -257,12 +258,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::get('danhsach','NangCapHeThongController@get_danhsach_buaan');
 
 		Route::get('them','NangCapHeThongController@get_them_buaan');
-		Route::get('them','NangCapHeThongController@post_them_buaan');
+		Route::post('them','NangCapHeThongController@post_them_buaan');
 
-		Route::get('sua','NangCapHeThongController@get_sua_buaan');
-		Route::get('sua','NangCapHeThongController@post_sua_buaan');
+		Route::get('sua/{id}','NangCapHeThongController@get_sua_buaan');
+		Route::post('sua/{id}','NangCapHeThongController@post_sua_buaan');
 
-		Route::get('xoa','NangCapHeThongController@get_xoa_buaan');
+		Route::get('xoa/{id}','NangCapHeThongController@get_xoa_buaan');
 
 	});
 /* 
@@ -274,15 +275,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::get('danhsach','NangCapHeThongController@get_danhsach_monan_buaan');
 
 		Route::get('them','NangCapHeThongController@get_them_monan_buaan');
-		Route::get('them','NangCapHeThongController@post_them_monan_buaan');
+		Route::post('them','NangCapHeThongController@post_them_monan_buaan');
 
-		Route::get('sua','NangCapHeThongController@get_sua_monan_buaan');
-		Route::get('sua','NangCapHeThongController@post_sua_monan_buaan');
+		Route::get('sua/{id}','NangCapHeThongController@get_sua_monan_buaan');
+		Route::post('sua/{id}','NangCapHeThongController@post_sua_monan_buaan');
 
-		Route::get('xoa','NangCapHeThongController@get_xoa_monan_buaan');
+		Route::get('xoa/{id}','NangCapHeThongController@get_xoa_monan_buaan');
 	});
 
 });
+
+
+
 //Phần dành cho nhà hàng liên kết
 Auth::routes();
 
