@@ -236,6 +236,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::get('xoa/{id}','NangCapHeThongController@get_xoa_nguyenlieu');
 
 	});
+/*
+	 quản lý món nă + nguyên liệu:
+	 một món ăn có thể có nhiều nguyên liệu ,
+	 một nguyên liệu có thể thuộc nhiều món ăn
+ */
+	Route::group(['prefix' => 'monan_nguyenlieu'],function(){
+		Route::get('danhsach','NangCapHeThongController@get_danhsach_monan_nguyenlieu');
+
+		Route::get('them','NangCapHeThongController@get_them_monan_nguyenlieu');
+		Route::post('them','NangCapHeThongController@post_them_monan_nguyenlieu');
+
+		Route::get('sua/{id}','NangCapHeThongController@get_sua_monan_nguyenlieu');
+		Route::post('sua/{id}','NangCapHeThongController@post_sua_monan_nguyenlieu');
+
+		Route::get('xoa/{id}','NangCapHeThongController@get_xoa_monan_nguyenlieu');
+	});
 // quản lý một bữa ăn 
 	Route::group(['prefix'=>'buaan'],function(){
 		Route::get('danhsach','NangCapHeThongController@get_danhsach_buaan');
@@ -249,9 +265,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::get('xoa','NangCapHeThongController@get_xoa_buaan');
 
 	});
+/* 
+	 quản lý phần bũa ăn + món ăn:
+	 một bữa ăn có nhiểu món ăn,
+	 một món ăn có thể thuộc nhiều bữa ăn
+ */
+	Route::group(['prefix' => 'monan_buaan'],function(){
+		Route::get('danhsach','NangCapHeThongController@get_danhsach_monan_buaan');
+
+		Route::get('them','NangCapHeThongController@get_them_monan_buaan');
+		Route::get('them','NangCapHeThongController@post_them_monan_buaan');
+
+		Route::get('sua','NangCapHeThongController@get_sua_monan_buaan');
+		Route::get('sua','NangCapHeThongController@post_sua_monan_buaan');
+
+		Route::get('xoa','NangCapHeThongController@get_xoa_monan_buaan');
+	});
+
 });
 //Phần dành cho nhà hàng liên kết
 Auth::routes();
+
 Route::prefix('nhahang')->group(function () {
 	Route::get('/thongtin', 'NhaHangController@index')->name('nhahang.thongtin');
 

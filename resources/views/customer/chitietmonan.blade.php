@@ -211,13 +211,7 @@
 			<div id="thamkhaothem" class="col-md-3" style="background-color: white;; font-family: 'segoe ui light';" >
 				<marquee behavior="alternate"><h5>Cùng Nguyên Liệu</h5></marquee>
 				<div id="baiviet">
-					<p>Món 1:</p>
-					<p>Món 2:</p>
-					<p>Món 3:</p>
-					<p>Món 2:</p>
-					<p>Món 3:</p>
-					<p>Món 2:</p>
-					<p>Món 3:</p>
+					
 				</div>
 			</div>
 		</div>
