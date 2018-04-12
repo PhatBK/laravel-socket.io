@@ -17,7 +17,9 @@
     <!-- Custom CSS -->
     <link href="vendor_admin/dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
+
     <link href="vendor_admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
     <!-- DataTables CSS -->
     <link href="vendor_admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->

@@ -64,8 +64,8 @@
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="<?php echo e($nl->protein); ?>"><?php echo e($nl ->protein); ?></td>
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="<?php echo e($nl->created_at); ?>"><?php echo e($nl ->created_at); ?></td>
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="<?php echo e($nl->updated_at); ?>"><?php echo e($nl ->updated_at); ?></td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/danhsach/xoa/<?php echo e($nl ->id); ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa?')""> Xóa</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/danhsach/sua/<?php echo e($nl ->id); ?>">Sửa</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/nguyenlieu/xoa/<?php echo e($nl ->id); ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa?')""> Xóa</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/nguyenlieu/sua/<?php echo e($nl ->id); ?>">Sửa</a></td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>

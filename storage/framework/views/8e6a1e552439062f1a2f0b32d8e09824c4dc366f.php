@@ -30,17 +30,27 @@
             <?php endif; ?>
             <!-- /.col-lg-12 -->                      
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form name="nguyenlieu" action="admin/nguyenlieu/them" enctype="multipart/form-data" method="POST" onsubmit="return validateForm()">
-                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
+                <form id="form1" runat="server" name="nguyenlieu" action="admin/nguyenlieu/them" enctype="multipart/form-data" method="POST" onsubmit="return validateForm()">
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                     <div class="form-group ">
                         <label>Tên Nguyên Liệu</label>
                         <input class="form-control" name="ten" placeholder="Nhập tên nguyên liệu" required="" />
                     </div>
                     <div class="form-group">
                           <label >Ảnh Nguyên Liệu</label>
-                          <input required type="file" name="anh">
+                          <input accept="image/*" onchange="loadFile(event)" type="file" name="anh" required="">
                     </div>
+                    <div class="form-group">
+                        <img id="output" src="#" alt="&nbsp;&nbsp;&nbsp;&nbsp;Ảnh của bạn" width="575px" height="400" />
+                    </div>
+                    <script>
+                      var loadFile = function(event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                      };
+                    </script>
+
                     <div class="form-group ">
                         <label>Calos:</label>
                         <input class="form-control" name="calos" placeholder="Lượng calos cung cấp:" required="" type="number" />
@@ -72,14 +82,13 @@
                             <a class="btn btn-warning pull-right" href="admin/nguyenlieu/danhsach">Huỷ bỏ</a>
                         </div>
                     </div>
-                    
-                <form>
-                    </div>
-                </div>
-                <!-- /.row -->
+                </form>
             </div>
-            <!-- /.container-fluid -->
         </div>
+                <!-- /.row -->
+        </div>
+            <!-- /.container-fluid -->
+    </div>
         <!-- /#page-wrapper -->
-        <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -66,12 +66,7 @@
                                       <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if(Auth::user()): ?>
-                                    <li><a><i class="fa fa-user fa-fw">-: </i><b style="color: red;"><?php echo e(Auth::user()->tentaikhoan); ?></b></a>
-                                    </li>
-                                    <?php endif; ?>
-                                    <?php if(Auth::guard('nhahang')->user()): ?>
-                                    <li><a><i class="fa fa-github-alt">-: </i><b style="color: red;"><?php echo e(Auth::guard('nhahang')->user()->username); ?></b></a>
-                                    </li>
+                                    
                                     <?php endif; ?>
                                     <?php if( Auth::user() || Auth::guard('nhahang')->user()): ?>
                                         <li><a href="dangxuat">Đăng Xuất</a></li>

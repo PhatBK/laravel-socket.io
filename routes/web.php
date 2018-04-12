@@ -24,7 +24,7 @@ Route::get('flask/api-get/buaans','RecommendController@get_api_data_buaan');
 
 
 
-
+Route::get('excel','NangCapHeThongController@fast_excel');
 Route::get('trangcanhan/{id}','NangCapHeThongController@getTrangCaNhan');
 Route::get('test/{id}','NangCapHeThongController@testHasManyThrough');
 Route::get('xem-mot-mon/{id}','NangCapHeThongController@getMonAn');

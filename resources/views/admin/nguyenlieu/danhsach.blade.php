@@ -63,8 +63,8 @@
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="{{$nl->protein}}">{{$nl ->protein}}</td>
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="{{$nl->created_at}}">{{$nl ->created_at}}</td>
                         <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"  title="{{$nl->updated_at}}">{{$nl ->updated_at}}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/danhsach/xoa/{{ $nl ->id }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')""> Xóa</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/danhsach/sua/{{ $nl ->id }}">Sửa</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/nguyenlieu/xoa/{{ $nl ->id }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')""> Xóa</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/nguyenlieu/sua/{{ $nl ->id }}">Sửa</a></td>
                     </tr>
                     @endforeach
                 </tbody>

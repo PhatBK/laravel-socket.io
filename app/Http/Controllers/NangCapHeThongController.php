@@ -12,7 +12,7 @@ use App\Models\MonAn_BuaAn;
 use App\Models\User;
 use App\Models\TheLoai;
 use App\Models\LoaiMon;
-
+use Rap2hpoutre\FastExcel\FastExcel;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Symfony\Component\DomCrawler\Crawler;
@@ -113,21 +113,11 @@ class NangCapHeThongController extends Controller
         echo "Nang Luong Ban Can:<br>";
         return $bmr;
     }
-    // gợi ý bữa ăn
-    public function goiYBuaAn($id){
-        $monan = MonAn::find($id);
-        $nguyenlieus = $monan->nguyenlieu();
-        dd($nguyenlieus);
-    }
     // test API
     public function getMonAn($id){
         $monan = MonAn::find($id);
         $nguyenlieus = $monan->monan_nguyenlieu();
         return response()->json($monan,201);
-    }
-    public function getNguyenLieu($id){
-        $monan = MonAn::find($id);
-        $monan_nguyenlieus = $monan->monan_nguyenlieu();
     }
     public function getChannel(){
         return changeTitle("Nguyễn Huy Phát,sinh viên năm 4 đại học bách khoa");
@@ -200,25 +190,6 @@ class NangCapHeThongController extends Controller
         }
         die;
     }
-    public function testHasManyThrough($id){
-        $theloai = Theloai::find($id);
-        if($theloai != Null){
-            if($theloai->loaimon()){
-                foreach ($theloai->loaimon() as $lm) {
-                    echo $lm->ten;
-                    echo "<br>";
-                }
-            }
-            $monans = $theloai->monan();
-            foreach ($monans as $ma) {
-                echo $ma->ten_monan;
-                echo "<br>";
-            }
-            // dd($monans);
-        }else{
-            echo "Khong co the loai nay...";
-        }
-    }
     // lấy trang cá nhân một user
     public function getTrangCaNhan($id){
         $user = User::find($id);
@@ -237,28 +208,63 @@ class NangCapHeThongController extends Controller
 
     // Phần quản lý về nguyên liệu
     public function get_danhsach_nguyenlieu(){
-
         $nguyenlieus = NguyenLieu::all();
-        // dd($nguyenlieus);
         return view('admin.nguyenlieu.danhsach',['nguyenlieus'=>$nguyenlieus]);
-        
     }
     public function get_them_nguyenlieu(){
         return view('admin.nguyenlieu.them');
     }
     public function post_them_nguyenlieu(Request $req){
+        $this->validate($req,
+            [
+                'anh' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            ],
+            [
+                'anh.required' => 'Error : chưa chọn ảnh đại diện',
+                'anh.image' => 'Error   : ảnh đại diện không đúng đinh dạng ảnh',
+                'anh.mimes' => 'Error : chọn file có đuôi: jpeg,png,jpg,gif,svg ',
+                'anh.size' => 'Error    : dung lượng ảnh phải <= 4 Mb',
+            ]
+        );
+        // Uploads file
+        $file = $req->file('anh');
+        $filename = $file->getClientOriginalName();
+        $Hinh = str_random(5) . $filename;
+        while (file_exists('uploads/nguyenlieu/' . $Hinh)) {
+            $Hinh = str_random(5) . $filename;
+        }
+        $file->move('uploads/nguyenlieu', $Hinh);
+        // hết uploads file
         $nguyenlieu = new NguyenLieu;
+        $nguyenlieu->ten = $req->ten;
+        $nguyenlieu->anh = 'uploads/nguyenlieu/'.$Hinh;
+
+        $nguyenlieu->calos = abs($req->calos);
+        $nguyenlieu->carbon = abs($req->carbon);
+        $nguyenlieu->xo = abs($req->xo);
+        $nguyenlieu->fat = abs($req->fat);
+        $nguyenlieu->fat_baohoa = abs($req->fat_baohoa);
+        $nguyenlieu->protein = abs($req->protein);
+
+        $nguyenlieu->save();
+
+        return redirect('admin/nguyenlieu/danhsach')->with('thongbao', 'SUCCESS : thêm tài khoản thành công..');
 
     }
     public function get_sua_nguyenlieu($id){
-
+        $nguyenlieu = NguyenLieu::find($id);
+        return view('admin.nguyenlieu.sua',['nguyenlieu'=>$nguyenlieu]);
+        // dd($nguyenlieu);
     }
     public function post_sua_nguyenlieu(Request $req){
 
+        dd($req);
 
     }
     public function get_xoa_nguyenlieu($id){
-
+        $nguyenlieu = NguyenLieu::find($id);
+        $nguyenlieu->delete();
+        return view('admin.nguyenlieu.danhsach');
     }
     // Phân quản lý về Bữa ăn
     public function get_danhsach_buaan(){
@@ -277,7 +283,13 @@ class NangCapHeThongController extends Controller
 
     }
     public function get_xoa_buaan(){
-        
+
+    }
+    public function fast_excel(){
+        // $users= User::all();
+        // (new FastExcel($users))->export('file.xlsx');
+        $collection = (new FastExcel)->configureCsv(';',1)->import('foods.csv');
+        dd($collection);
     }
 
 }

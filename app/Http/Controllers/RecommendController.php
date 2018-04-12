@@ -37,7 +37,12 @@ class RecommendController extends Controller
     	$res = $client->request('GET','api_get_data/user');
     	$body = $res->getBody();
 		$users = json_decode($body);
-        dd($users);
+        // dd($users);
+        foreach ($users as $us) {
+            echo $us[1];
+            echo "<br>";
+        }
+        
     }
     public function get_api_data_monan(){
     	$client = new GuzzleClient(['base_uri' => 'http://127.0.0.1:5000/']);

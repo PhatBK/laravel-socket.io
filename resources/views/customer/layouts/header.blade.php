@@ -68,12 +68,12 @@
                                       @endif
                                     @endif
                                     @if(Auth::user())
-                                    <li><a><i class="fa fa-user fa-fw">-: </i><b style="color: red;">{{ Auth::user()->tentaikhoan }}</b></a>
+                                    {{-- <li><a><i class="fa fa-user fa-fw">-: </i><b style="color: red;">{{ Auth::user()->tentaikhoan }}</b></a>
                                     </li>
                                     @endif
                                     @if(Auth::guard('nhahang')->user())
                                     <li><a><i class="fa fa-github-alt">-: </i><b style="color: red;">{{ Auth::guard('nhahang')->user()->username }}</b></a>
-                                    </li>
+                                    </li> --}}
                                     @endif
                                     @if( Auth::user() || Auth::guard('nhahang')->user())
                                         <li><a href="dangxuat">Đăng Xuất</a></li>
