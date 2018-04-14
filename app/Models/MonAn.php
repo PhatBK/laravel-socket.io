@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class MonAn extends Model {
-	protected $table = "MonAn";
+	protected $table = "monan";
 	//tạo lại liên kết ngược tới các bảng
 	public function loaimon() {
 		return $this->belongsTo('App\Models\LoaiMon', 'id_loaimon', 'id');

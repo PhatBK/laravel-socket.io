@@ -5,5 +5,5 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class ThongKe extends Model {
-	protected $table = "ThongKe";
+	protected $table = "thongke";
 }

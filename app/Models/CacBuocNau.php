@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CacBuocNau extends Model {
 
-	protected $table = "CacBuocNau";
+	protected $table = "cacbuocnau";
 	public function monan() {
 		return $this->belongsTo('App\Models\MonAn', 'id_monan', 'id');
 	}

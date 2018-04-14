@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class CommentMonAn extends Model {
-	protected $table = "CommentMonAn";
+	protected $table = "commentmonan";
 	public function monan() {
 		return $this->belongsTo('App\Models\MonAn', 'id_monan', 'id');
 	}

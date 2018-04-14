@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class NhaHang extends Authenticatable {
 	use Notifiable;
 
-	protected $table = "NhaHang";
+	protected $table = "nhahang";
 	protected $guard = 'nhahang';
 	protected $fillable = [
 		'ten', 'tenkhongdau', 'username', 'luotxem', 'lienhe', 'vitri', 'gioithieu', 'anh', 'level', 'noibat',

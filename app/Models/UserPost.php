@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class UserPost extends Model {
-	protected $table = "UserPost";
+	protected $table = "userpost";
 
 	public function postimage() {
 		return $this->hasMany('App\Models\PostImage', 'id_post', 'id');
