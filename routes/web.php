@@ -38,8 +38,16 @@ Route::get('bmr/{cannang}/{chieucao}/{tuoi}/{gioitinh}','NangCapHeThongControlle
 Route::get('plotly',function(){
 	return view('plotly.test');
 });
+Route::get('users','NangCapHeThongController@get_firebase');
 
-										/*ngày 10-01-2018*/
+
+
+/*  Ngày 10-01-2018
+	Các route của hệ thống cũ
+	Gồm các thao tác của Admin,
+	Các thao tác cơ bản của người dùng
+*/
+	
 // Route dành cho admin login
 Route::get('admin/dangnhap', 'UserController@getAdminLogin');
 Route::post('admin/dangnhap', 'UserController@postAdminLogin');

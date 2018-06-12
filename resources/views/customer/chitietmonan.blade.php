@@ -405,7 +405,7 @@
 	    })
     });
 
-    var socket = io.connect('http://localhost:1108');
+    var socket = io.connect('http://103.237.98.46:1108');
 
 	function sendComment(id_user,id_monan) {
 		var text = $("#input-comment").val();

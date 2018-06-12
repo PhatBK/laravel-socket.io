@@ -127,73 +127,9 @@ class NangCapHeThongController extends Controller
         return changeTitle("Nguyễn Huy Phát,sinh viên năm 4 đại học bách khoa");
     	// return view('customer.channel');
     }
-
-    // crawl dữ liệu từ các trang trên thực tế
-    // public function crawlerAction()
-    // {
-
-    //     $url = "https://vi.wikipedia.org/wiki/Vi%E1%BB%87t_Nam";
-
-    //     $client = new Client();
-
-    //     $crawler = $client->request('GET', $url);
-
-    //     $links_count = $crawler->filter('a')->count();
-    //     $title_count = $crawler->filter('title')->count();
-        
-    //     $all_titles = array();
-    //     $all_links = array();
-
-    //     $crawler->filter('body > p')->each(function ($node) {
-    //         echo $node->text()."<br>";
-    //     });
-
-    //     if($title_count > 0){
-    //         $titles = $crawler->filter('title');
-    //         foreach($titles as $title){
-    //             $all_titles[] = $title;
-    //         }
-    //         $all_titles = array_unique($all_titles);
-    //         // print_r($all_titles);
-    //     }else{
-    //         echo " không tìm thấy title nào ..";
-    //     }
-    //     if($links_count > 0){
-
-    //         $links = $crawler->filter('a')->links();
-
-    //         foreach ($links as $link) {
-    //             // $all_links[] = $link->getURI();
-    //             echo $link->getURI()."<br>";
-                
-    //             $url_child = $link->getURI();
-    //             $client_child = new Client();
-
-    //             $crawler_child = $client_child->request('GET', $url_child);
-    //             $links_count_child = $crawler_child->filter('a')->count();
-
-    //             $all_links_child = array();
-
-    //             if($links_count_child > 0){
-    //                 $links_child = $crawler_child->filter('a')->links();
-    //                 foreach ($links_child as $link_child) {
-    //                     // $all_links_child[] = $link_child->getURI();
-    //                     echo $link_child->getURI()."<br>";
-    //                 }
-    //                 // $all_links_child = array_unique($all_links_child);
-    //                 // echo "<pre>";
-    //                 // print_r($all_links_child);
-    //                 // echo "</pre>";
-    //             }
-
-    //         }
-    //         // $all_links = array_unique($all_links);
-    //         // echo "Tất cả các link có sẵn từ trang: $url   <pre>"; print_r($all_links);echo "</pre>";
-    //     } else {
-    //         echo "không có link nào !!";
-    //     }
-    //     die;
-    // }
+    public function get_firebase(){
+        return view('firebase.firebase');
+    }
     // lấy trang cá nhân một user
     public function getTrangCaNhan($id){
         $user = User::find($id);

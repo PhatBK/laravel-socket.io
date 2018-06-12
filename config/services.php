@@ -30,14 +30,21 @@ return [
 	],
 
 	'stripe' => [
-		'model' => App\User::class,
+		'model' => App\Models\User::class,
 		'key' => env('STRIPE_KEY'),
 		'secret' => env('STRIPE_SECRET'),
 	],
 	'google' => [
 		'client_id' => '269234388591-k9t1oelmhdr0v3c1heqbk9948695sue5.apps.googleusercontent.com',
 		'client_secret' => 'buj-Btzrw8XN0tXl952LhIMy',
-		'redirect' => 'http://bkcook.ddns.net/bkcook.vn/public/login/google/callback',
+		'redirect' => 'http://localhost/bkcook.vn/public/login/google/callback',
 	],
+    'firebase' => [
+        'api_key' => 'AIzaSyCZvtRCktw6XWua-J49Wfa7nSz2ZD76HCc', // Only used for JS integration
+        'auth_domain' => 'vietfood-be163.firebaseapp.com', // Only used for JS integration
+        'database_url' => 'https://vietfood-be163.firebaseio.com',
+        'secret' => 'secret',
+        'storage_bucket' => 'vietfood-be163.appspot.com', // Only used for JS integration
+    ],
 
 ];
